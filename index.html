@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prode Mundial FIFA 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- html2canvas for PNG export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="logo-trophy">🏆</span>
+      <div class="logo-text">
+        <span class="logo-main">PRODE</span>
+        <span class="logo-sub">MUNDIAL FIFA 2026</span>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-btn active" data-view="groups">Grupos</button>
+      <button class="nav-btn" data-view="bracket">Llaves</button>
+      <button class="nav-btn" data-view="stats">Estadísticas</button>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-icon" id="toggleTheme" title="Cambiar tema">🌙</button>
+      <button class="btn-icon" id="btnAutoSim" title="Simulación automática">⚡</button>
+      <button class="btn-primary" id="btnExport">Exportar ▾</button>
+    </div>
+  </div>
+</header>
+
+<!-- Export dropdown -->
+<div class="export-dropdown" id="exportDropdown">
+  <button class="export-option" id="exportPNG">📸 Imagen PNG</button>
+  <button class="export-option" id="exportPDF">📄 PDF</button>
+  <button class="export-option" id="exportJSON">📦 JSON</button>
+  <button class="export-option" id="exportShare">🔗 Compartir link</button>
+  <hr class="export-divider"/>
+  <button class="export-option danger" id="btnReset">🗑️ Reiniciar todo</button>
+</div>
+
+<!-- ══════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════ -->
+<main class="main-content">
+
+  <!-- ── GROUPS VIEW ── -->
+  <section class="view active" id="view-groups">
+    <div class="view-header">
+      <h2 class="view-title">Fase de Grupos</h2>
+      <p class="view-subtitle">Ingresá los resultados de cada partido para calcular las posiciones</p>
+    </div>
+    <div class="groups-container" id="groupsContainer"></div>
+  </section>
+
+  <!-- ── BRACKET VIEW ── -->
+  <section class="view" id="view-bracket">
+    <div class="view-header">
+      <h2 class="view-title">Llaves del Torneo</h2>
+      <p class="view-subtitle">Los clasificados avanzan automáticamente. Hacé clic en el equipo ganador</p>
+    </div>
+    <div class="bracket-wrapper" id="bracketWrapper"></div>
+  </section>
+
+  <!-- ── STATS VIEW ── -->
+  <section class="view" id="view-stats">
+    <div class="view-header">
+      <h2 class="view-title">Estadísticas</h2>
+      <p class="view-subtitle">Resumen general del torneo</p>
+    </div>
+    <div class="stats-grid" id="statsGrid"></div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════
+     CHAMPION MODAL
+══════════════════════════════════ -->
+<div class="modal-overlay" id="championModal">
+  <div class="champion-modal">
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="trophy-anim">🏆</div>
+    <h1 class="champion-title">¡CAMPEÓN DEL MUNDO!</h1>
+    <div class="champion-flag-wrap">
+      <img class="champion-flag" id="championFlag" src="" alt="" />
+    </div>
+    <h2 class="champion-name" id="championName"></h2>
+    <div class="podium">
+      <div class="podium-item">
+        <span class="podium-medal">🥈</span>
+        <img class="podium-flag" id="runnerUpFlag" src="" alt="" />
+        <span class="podium-label" id="runnerUpName"></span>
+      </div>
+      <div class="podium-item">
+        <span class="podium-medal">🥉</span>
+        <img class="podium-flag" id="thirdFlag" src="" alt="" />
+        <span class="podium-label" id="thirdName"></span>
+      </div>
+    </div>
+    <button class="btn-primary" id="closeChampion">Ver resultados</button>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
